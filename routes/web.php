@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BoxController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +33,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('items', ItemController::class)->middleware('auth');
+
+Route::resource('boxes', BoxController::class)->middleware('auth');
+
+Route::resource('loans', LoanController::class)->middleware('auth');
+
 
 require __DIR__.'/auth.php';

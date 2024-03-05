@@ -44,5 +44,6 @@ class UserSeeder extends Seeder
             ],
             // Puedes añadir más usuarios aquí
         ]);
+
     }
 }

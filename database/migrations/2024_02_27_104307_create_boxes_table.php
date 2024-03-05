@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('boxes', function (Blueprint $table) {
             $table->id();
             $table->string('label')->notNull();
-            $table->text('location')->notNull();
+            $table->text('location')->nullable();
             $table->timestamps();
         });
     }

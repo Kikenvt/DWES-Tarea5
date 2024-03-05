@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->bigInteger('box_id')->unsigned()->nullable();
-            $table->foreign('box_id')->references('id')->on('boxes');
+            $table->foreign('box_id')->references('id')->on('boxes')->onDelete('cascade');
             $table->timestamps();
         });
     }
