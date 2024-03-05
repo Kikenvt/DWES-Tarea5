@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use App\Models\Box;
-use App\Models\Loan;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Models\Box;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\RedirectResponse;
 
 class ItemController extends Controller
 {
@@ -16,8 +18,10 @@ class ItemController extends Controller
      */
     public function index(): View
     {
+
         return view('items.index', [
-            'items' => Item::all(),
+            'items' => Item::latest()->get(),
+
         ]);
     }
 
@@ -26,9 +30,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('items.create', [
-            'boxes' => Box::all(),
-        ]);
+        return view(
+            'items.create',
+            ['boxes' => Box::all()]
+        );
     }
 
     /**
@@ -36,6 +41,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required|max:255',
             'description' => 'nullable|max:255',
@@ -44,13 +50,14 @@ class ItemController extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
-        if($request->hasFile('picture')) {
+
+        if ($request->hasFile('picture')) {
             $validated['picture'] = $request->file('picture')->store('public/photos');
         }
 
         Item::create($validated);
 
-        return redirect('items')->with('success', 'Item created');
+        return redirect('items')->with('success', 'Item created successfully');
     }
 
     /**
@@ -60,7 +67,7 @@ class ItemController extends Controller
     {
         return view('items.show', [
             'item' => $item,
-            'boxes' => Box::all(),
+            'boxes' => Box::all()
         ]);
     }
 
@@ -69,10 +76,13 @@ class ItemController extends Controller
      */
     public function edit(Item $item): View
     {
-        return view('items.edit', [
-            'item' => $item,
-            'boxes' => Box::all(),
-        ]);
+        return view(
+            'items.edit',
+            [
+                'item' => $item,
+                'boxes' => Box::all()
+            ]
+        );
     }
 
     /**
@@ -88,16 +98,18 @@ class ItemController extends Controller
             'picture ' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
-        if($request->hasFile('picture')) {
+
+        if ($request->hasFile('picture')) {
             $validated['picture'] = $request->file('picture')->store('public/photos');
-            if($item->picture) {
+
+            if ($item->picture) {
                 Storage::delete($item->picture);
             }
         }
 
         $item->update($validated);
 
-        return redirect('items')->with('success', 'Item updated');
+        return redirect('items');
     }
 
     /**
@@ -105,12 +117,12 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        if($item->picture) {
+        if ($item->picture) {
             Storage::delete($item->picture);
         }
 
         $item->delete();
 
-        return redirect('items')->with('success', 'Item deleted');
+        return redirect('items')->with('success', 'Item deleted successfully');
     }
 }

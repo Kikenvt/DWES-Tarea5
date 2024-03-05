@@ -10,9 +10,11 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
-        'box_id',
-        'label',
+        'name',
         'description',
+        'picture',
+        'price',
+        'box_id',
     ];
 
     public function box()
@@ -20,7 +22,7 @@ class Item extends Model
         return $this->belongsTo(Box::class);
     }
 
-    public function loan()
+    public function loans()
     {
         return $this->hasOne(Loan::class);
     }

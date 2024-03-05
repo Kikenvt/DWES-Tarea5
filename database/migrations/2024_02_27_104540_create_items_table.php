@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->notNull();
+            $table->string('name');
             $table->text('description')->nullable();
             $table->string('picture')->nullable();
             $table->decimal('price', 8, 2)->nullable();
-            $table->bigInteger('box_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('box_id')->nullable();
             $table->foreign('box_id')->references('id')->on('boxes')->onDelete('cascade');
             $table->timestamps();
         });
