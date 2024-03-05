@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Box;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class BoxController extends Controller
 {
@@ -20,7 +21,7 @@ class BoxController extends Controller
      */
     public function create()
     {
-        //
+        return view('boxes.create');
     }
 
     /**

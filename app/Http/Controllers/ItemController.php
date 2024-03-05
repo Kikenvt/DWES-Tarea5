@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Box;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -12,7 +14,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        return view('items.index', [
+            'items' => Item::all(),
+        ]);
     }
 
     /**
@@ -20,7 +24,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create', [
+            'boxes' => Box::all(),
+        ]);
     }
 
     /**
@@ -36,7 +42,10 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('items.show', [
+            'item' => $item,
+            'loans' => Loan::all(),
+        ]);
     }
 
     /**
