@@ -30,7 +30,15 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-center text-sm font-medium ">
                                     @if ($loan->returned_date === null)
-                                        @if ($loan->user_id === Auth::id())
+                                        @if ($loan->user_id === Auth::id() && $loan->due_date < now())
+                                        <form action="{{ route('loans.update', $loan->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="text-orange-600 ">
+                                           Devolver con retraso
+                                        </button>
+                                        </form>
+                                        @elseif ($loan->user_id === Auth::id())
                                         <form action="{{ route('loans.update', $loan->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')

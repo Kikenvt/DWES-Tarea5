@@ -19,10 +19,12 @@
                 <form method="POST" action="{{ route('loans.update', $loan->id) }}">
                     @csrf
                     @method('PUT')
-                    @if($user->id == Auth::user()->id)
+                    @if($user->id == Auth::user()->id && $loan->due_date < now())
+                    <button type="submit" class="text-black border rounded-xl bg-yellow-400 hover:bg-black hover:text-yellow-400 py-2 px-4">Devolver con retraso</button>
+                    @elseif($user->id == Auth::user()->id)
                     <button type="submit" class="text-black border rounded-xl bg-green-700 hover:bg-slate-600 hover:text-green-700 py-2 px-4">Devolver</button>
                     @else
-                    <div class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Prestado a {{$loan->user->name}}</div>
+                    <div class="w-full bg-purple-800 text-center text-white rounded-lg p-2">Prestado a {{$loan->user->name}}</div>
                     @endif
                 </form>
                 <a href="{{ url()->previous() }}" class="text-black border rounded-xl bg-orange-400 hover:bg-slate-800 hover:text-orange-400 py-2 px-4">Volver atrás</a>
