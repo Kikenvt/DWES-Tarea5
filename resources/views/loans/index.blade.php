@@ -35,7 +35,7 @@
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="text-green-600 ">
-                                           Marcar como devuelto
+                                           Devolver
                                         </button>
                                     </form>
                                     @else

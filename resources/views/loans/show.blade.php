@@ -19,10 +19,13 @@
                 <form method="POST" action="{{ route('loans.update', $loan->id) }}">
                     @csrf
                     @method('PUT')
-
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Devolver producto</button>
+                    @if($user->id == Auth::user()->id)
+                    <button type="submit" class="text-black border rounded-xl bg-green-700 hover:bg-slate-600 hover:text-green-700 py-2 px-4">Devolver</button>
+                    @else
+                    <div class="w-full bg-slate-600 text-center text-white rounded-lg p-2">Prestado a {{$loan->user->name}}</div>
+                    @endif
                 </form>
-                <a href="{{ url()->previous() }}" class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-gray-400 active:bg-gray-500 focus:outline-none focus:border-gray-500 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Volver atrás</a>
+                <a href="{{ url()->previous() }}" class="text-black border rounded-xl bg-orange-400 hover:bg-slate-800 hover:text-orange-400 py-2 px-4">Volver atrás</a>
             </div>
         </div>
     </div>

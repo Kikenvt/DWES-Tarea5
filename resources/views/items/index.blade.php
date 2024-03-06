@@ -53,19 +53,19 @@
                             <td class="py-4 px-7 border-b border-gray-600">
                                 <div class="flex justify-center gap-2">
 
-                                    <a href="{{ route('items.show', $item->id) }}" class="text-blue-500 hover:text-blue-600 font-bold">Ver</a>
+                                    <a href="{{ route('items.show', $item->id) }}" class="font-bold text-black border rounded-xl bg-orange-400 hover:bg-slate-800 hover:text-orange-400 py-2 px-4">Ver</a>
 
 
-                                    <a href="{{ route('items.edit', $item->id) }}" class="text-yellow-500 hover:text-yellow-600 font-bold">Editar</a>
+                                    <a href="{{ route('items.edit', $item->id) }}" class="font-bold text-black border rounded-xl bg-orange-400 hover:bg-slate-800 hover:text-orange-400 py-2 px-4">Editar</a>
                                     <form action="{{ route('items.destroy', $item->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:text-red-600 font-bold">Delete</button>
+                                        <button type="submit" class="font-bold text-red-950 border rounded-xl bg-red-700 hover:bg-red-950 hover:text-red-700 py-2 px-4">Eliminar</button>
                                     </form>
                                     @if ($item->loans()->whereNull('returned_date')->first())
-                                    <a href="{{ route('loans.show', $item->loans()->whereNull('returned_date')->first()->id) }}" class="text-orange-500 hover:text-orange-600 font-bold">Ver Préstamo</a>
+                                    <a href="{{ route('loans.show', $item->loans()->whereNull('returned_date')->first()->id) }}" class="font-bold text-white border rounded-xl bg-purple-950 hover:bg-slate-500 hover:text-purple-950 py-2 px-4">Ver Préstamo</a>
                                     @else
-                                    <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="text-green-500 hover:text-green-600 font-bold">Prestar</a>
+                                    <a href="{{ route('loans.create', ['item_id' => $item->id]) }}" class="font-bold text-black border rounded-xl bg-green-700 hover:bg-black hover:text-green-700 py-2 px-4">Prestar</a>
                                     @endif
                                 </div>
                             </td>
