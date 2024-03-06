@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Loan;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+
+use function Laravel\Prompts\alert;
 
 class LoanController extends Controller
 {
@@ -41,10 +44,15 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'item_id' => 'required|exists:items,id',
-            'due_date' => 'required|date',
+            'due_date' => 'required|date|after:today',
         ]);
+
+
+
+
 
         $validated['user_id'] = auth()->user()->id;
         $validated['checkout_date'] = now();

@@ -30,15 +30,15 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-center text-sm font-medium ">
                                     @if ($loan->returned_date === null)
-                                    @if ($loan->user_id === Auth::id())
-                                    <form action="{{ route('loans.update', $loan->id) }}" method="POST">
+                                        @if ($loan->user_id === Auth::id())
+                                        <form action="{{ route('loans.update', $loan->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit" class="text-green-600 ">
                                            Devolver
                                         </button>
-                                    </form>
-                                    @else
+                                        </form>
+                                        @else
                                     <span class="text-red-600">No devuelto</span>
                                     @endif
                                     @else
