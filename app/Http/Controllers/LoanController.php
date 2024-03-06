@@ -44,15 +44,10 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'item_id' => 'required|exists:items,id',
             'due_date' => 'required|date|after:today',
         ]);
-
-
-
-
 
         $validated['user_id'] = auth()->user()->id;
         $validated['checkout_date'] = now();

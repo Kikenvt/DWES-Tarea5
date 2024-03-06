@@ -18,7 +18,6 @@ class ItemController extends Controller
      */
     public function index(): View
     {
-
         return view('items.index', [
             'items' => Item::latest()->get(),
 
@@ -97,7 +96,6 @@ class ItemController extends Controller
             'box_id' => 'nullable|exists:boxes,id',
             'picture ' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
-
 
         if ($request->hasFile('picture')) {
             $validated['picture'] = $request->file('picture')->store('public/photos');
