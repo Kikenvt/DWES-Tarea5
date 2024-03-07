@@ -1,18 +1,18 @@
 <x-app-layout>
 
 <x-slot name="header">
-<div class="flex items-center justify-center h-screen">
-    <div class="w-full max-w-md bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
-            <h1 class="text-2xl font-bold mb-4 text-gray-700">Detalles del préstamo</h1>
+<div class="py-12 flex justify-center bg-gray-900 h-min-full">
+    <div class="w-full max-w-md overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-12 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <h1 class="text-2xl font-bold mb-4 text-white">Detalles del préstamo</h1>
 
-            <p class="mb-2 text-gray-600"><strong>ID del préstamo:</strong> {{ $loan->id }}</p>
-            <p class="mb-2 text-gray-600"><strong>Fecha de creación:</strong> {{ $loan->created_at }}</p>
-            <p class="mb-2 text-gray-600"><strong>Fecha de vencimiento:</strong> {{ $loan->due_date }}</p>
+            <p class="mb-2 text-white"><strong>ID del préstamo:</strong> {{ $loan->id }}</p>
+            <p class="mb-2 text-white"><strong>Fecha de creación:</strong> {{ $loan->created_at }}</p>
+            <p class="mb-2 text-white"><strong>Fecha de vencimiento:</strong> {{ $loan->due_date }}</p>
 
             @if($loan->item)
-                <p class="mb-2 text-gray-600"><strong>ID del artículo:</strong> {{ $loan->item->id }}</p>
-                <p class="mb-2 text-gray-600"><strong>Nombre del artículo:</strong> {{ $loan->item->name }}</p>
+                <p class="mb-2 text-white"><strong>ID del artículo:</strong> {{ $loan->item->id }}</p>
+                <p class="mb-2 text-white"><strong>Nombre del artículo:</strong> {{ $loan->item->name }}</p>
             @endif
 
             <div class="flex justify-between mt-6">
